@@ -16,17 +16,17 @@ public class Calendar extends Item{
          return events;
     }
 
-    public CalendarEvent findByDate(String date){
+    public CalendarEvent findByDate(String date) throws EmptyEventException{
          for(int i=0; i<events.size();i++){
              if (date == events.get(i).date()){
                  return events.get(i);
              }
          }
-         //exception
+         throw new EmptyEventException("Такого дня нет в календаре");
     }
 
-    public void comingDay(String date){
-            System.out.println("Наступил" +findByDate(date).eventDescription());
+    public void comingDay(String date) throws  EmptyEventException{
+            System.out.println("Наступил" + findByDate(date).eventDescription());
     }
 
 }
