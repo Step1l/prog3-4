@@ -30,21 +30,21 @@ public class Robinson implements GiftRes{
             // Исключение выбрасываем, или засчитываем, как неудачную попытку
         }
         ArrayList<Resource> provided = new ArrayList<Resource>();
-        for (int i=0; i< count; i++){
+        for (int i=0; i< enough_count; i++){
             provided.add(resources.remove(0));
         }
-        return provided;
         System.out.println("Я снабдил их ресурсами");
+        return provided;
     }
 
     public void negotitateWithEnvoys(Envoys envoys, String signal){
         this.familar_signal = signal;
-        envoys.getBoat.setSignal(signal);
-        System.out.println("Я условился с"+ envoys.name +"что на обратном пути они подадут сигнал, по которому я мог бы издали признать их лодку");
+        envoys.getBoat().setSignal(signal);
+        System.out.println("Я условился с"+ envoys.toString() +"что на обратном пути они подадут сигнал, по которому я мог бы издали признать их лодку");
 
     }
-    public void wishGoodLuck(Envous envoys) {
-        System.out.println("Я пожелал"+ envoys.name +"удачи");
+    public void wishGoodLuck(Envoys envoys) {
+        System.out.println("Я пожелал"+ envoys.toString() +"удачи");
     }
     public boolean recognizeBoat(Boat boat){
         if (boat.use() == this.familar_signal){
@@ -58,7 +58,7 @@ public class Robinson implements GiftRes{
         calendar.printEvents();
     }
     public Mood getMood(){
-        return this.moode;
+        return this.mood;
     }
     public void setMood(Mood mood){
         this.mood = mood;

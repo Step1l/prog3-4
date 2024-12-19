@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Envoys {
     private String name;
     private Boat boat;
@@ -19,13 +21,17 @@ public class Envoys {
         System.out.println("Они отчаляли в " + time.toString());
     }
 
+    public Boat getBoat() {
+        return boat;
+    }
+
     @Override
     public boolean equals(Object ob){
         if (getClass() != ob.getClass()) return false;
         if (this == ob) return true;
         Envoys o = (Envoys) ob;
         if (this.name == o.name && this.boat.equals(o.boat)) return true;
-        return false
+        return false;
     }
 
     @Override
