@@ -55,7 +55,7 @@ public class Robinson implements GiftRes{
 
     public void checkCalendar(Calendar calendar){
         System.out.println("Я проверил календарь");
-        calendar.printEvents();
+        calendar.use();
     }
     public Mood getMood(){
         return this.mood;
