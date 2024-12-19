@@ -1,0 +1,4 @@
+enum Food{
+    RAISIN,
+    BREAD
+}
