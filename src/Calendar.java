@@ -18,7 +18,7 @@ public class Calendar extends Item{
 
     public CalendarEvent findByDate(String date) throws EmptyEventException{
          for(int i=0; i<events.size();i++){
-             if (date == events.get(i).date()){
+             if (date.equals(events.get(i).date())){
                  return events.get(i);
              }
          }

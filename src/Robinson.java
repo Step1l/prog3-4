@@ -22,6 +22,9 @@ public class Robinson implements GiftRes{
             resources.add(resource);
         }
     }
+    public int getCountResources(){
+        return resources.size();
+    }
     @Override
     public ArrayList<Resource> provideResources (int enough_count) throws NotEnoughException {
         if (resources.size()< enough_count){
@@ -31,18 +34,20 @@ public class Robinson implements GiftRes{
         for (int i=0; i< enough_count; i++){
             provided.add(resources.remove(0));
         }
-        System.out.println("Я снабдил их запасами хлеба и изюма");
+        String checkBread = resources.contains(new Resource("хлеб",Food.BREAD))? "хлеба":"";
+        String checkRaisim = resources.contains(new Resource("изюм",Food.RAISIN))? "изюма":"";
+        System.out.println("Я снабдил их запасами " +checkBread + " и " + checkRaisim);
         return provided;
     }
 
     public void negotitateWithEnvoys(Envoys envoys, String signal){
         this.familar_signal = signal;
         envoys.getBoat().setSignal(signal);
-        System.out.println("Я условился с"+ envoys.toString() +"что на обратном пути они подадут сигнал, по которому я мог бы издали признать их лодку");
+        System.out.println("Я условился с "+ envoys.toString() +" что на обратном пути они подадут сигнал, по которому я мог бы издали признать их " +envoys.getBoat().toString());
 
     }
     public void wishGoodLuck(Envoys envoys) {
-        System.out.println("Я пожелал"+ envoys.toString() +"удачи");
+        System.out.println("Я пожелал "+ envoys.toString() +" удачи");
     }
     public boolean recognizeBoat(Boat boat){
         if (boat.use() == this.familar_signal){
@@ -50,6 +55,14 @@ public class Robinson implements GiftRes{
         }
         return false;
     }
+    public void printMood(){
+        String par = switch (mood){
+            case Mood.HAPPY -> "C какой радостью";
+            case Mood.NEUTRAL -> "";
+            case Mood.HOPEFULL -> " С какой надеждой";
+            case Mood.SAD -> "С какой печалью";
+        };
+        System.out.println(par + " я снарядил их в дорогу!");}
 
     public void checkCalendar(Calendar calendar){
         System.out.println("Я проверил календарь");
@@ -65,7 +78,7 @@ public class Robinson implements GiftRes{
         this.mood = mood;
     }
     public void printAttempt(){
-        System.out.println("Это была моя"+ (this.count_attempt)+ "сербезная попытка за " + YarsInExile + "лет");
+        System.out.println("Это была моя "+ (this.count_attempt)+ " серьезная попытка за " + YarsInExile + "лет");
     }
     // public randomAttempt
 
@@ -73,12 +86,41 @@ public class Robinson implements GiftRes{
 
     public void makeRandomAttempt(Calendar calendar, Envoys envoys, String daytosail)throws NotEnoughException,EmptyEventException{
         count_attempt++;
+
+        DayOfWeek day = DayOfWeek.values()[(int)(Math.random()*7)];
+        Month month = Month.values()[(int)(Math.random()*12)];
+        Moon moon = Moon.values()[(int)(Math.random()*2)];
+        Wheather wheather = Wheather.values()[(int)(Math.random()*6)];
+
+        double moodCoef = switch(mood){
+            case Mood.HAPPY -> 0.1;
+            case Mood.NEUTRAL -> 0;
+            case Mood.HOPEFULL -> 0.13;
+            case Mood.SAD -> -0.2;
+        };
+        double stormCoef = wheather==Wheather.STORMY ? -0.3 : 0;
+        printMood();
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
         printAttempt();
-        provideResources(26);
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        YarsInExile++;
+        provideResources((int)(Math.random()*100));
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
         calendar.comingDay(daytosail);
-        negotitateWithEnvoys(envoys,"Signal is" + Math.random()*100);
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        negotitateWithEnvoys(envoys,"Signal is" + (int)(Math.random()*100));
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
         wishGoodLuck(envoys);
-        envoys.sail(new Time(DayOfWeek.MONDAY,Month.DECEMBER,Moon.FULLMOON,Wheather.RAINY));
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
+        envoys.sail(new Time(day,month,moon,wheather));
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        if (((Math.random())+0.2 + moodCoef +stormCoef)<=0.5){
+            throw new RandomLuckException("В следствии не предвиденных обстоятельств корабль отплывающих разбился");
+        }
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        System.out.println("Я не был уверен правильно ли отмечены годы в моем календаре");
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
         checkCalendar(calendar);
     }
 

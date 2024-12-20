@@ -23,6 +23,6 @@ public class Resource {
     }
     @Override
     public int hashCode(){
-        return 31+type.hashCode()+name.hashCode();
+        return 31+type.hashCode();
     }
 }

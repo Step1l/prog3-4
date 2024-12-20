@@ -1,6 +1,6 @@
 public enum Mood{
     HAPPY,
-    SAD,
+    HOPEFULL,
     NEUTRAL,
-    ANXIOUS
+    SAD
 }
