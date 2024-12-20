@@ -1,6 +1,4 @@
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Robinson implements GiftRes{
     private ArrayList<Resource> resources;
@@ -15,6 +13,7 @@ public class Robinson implements GiftRes{
         this.mood = mood;
         this.YarsInExile = YearsInExile;
         count_attempt=0;
+        resources = new ArrayList<Resource>();
 
     }
     @Override
@@ -24,16 +23,15 @@ public class Robinson implements GiftRes{
         }
     }
     @Override
-    public ArrayList<Resource> provideResources (int enough_count){
+    public ArrayList<Resource> provideResources (int enough_count) throws NotEnoughException {
         if (resources.size()< enough_count){
-                int i=0;
-            // Исключение выбрасываем, или засчитываем, как неудачную попытку
+                throw new NotEnoughException("Ресурсов у меня не хватило");
         }
         ArrayList<Resource> provided = new ArrayList<Resource>();
         for (int i=0; i< enough_count; i++){
             provided.add(resources.remove(0));
         }
-        System.out.println("Я снабдил их ресурсами");
+        System.out.println("Я снабдил их запасами хлеба и изюма");
         return provided;
     }
 
@@ -55,7 +53,10 @@ public class Robinson implements GiftRes{
 
     public void checkCalendar(Calendar calendar){
         System.out.println("Я проверил календарь");
-        calendar.use();
+        ArrayList<CalendarEvent> c = calendar.use();
+        for (int i=0; i<c.size();i++){
+            System.out.println(c.get(i).toString());
+        }
     }
     public Mood getMood(){
         return this.mood;
@@ -64,12 +65,29 @@ public class Robinson implements GiftRes{
         this.mood = mood;
     }
     public void printAttempt(){
-        System.out.println("Это была моя"+ this.count_attempt+ "попытка");
+        System.out.println("Это была моя"+ (this.count_attempt)+ "сербезная попытка за " + YarsInExile + "лет");
     }
     // public randomAttempt
+
+
+
+    public void makeRandomAttempt(Calendar calendar, Envoys envoys, String daytosail)throws NotEnoughException,EmptyEventException{
+        count_attempt++;
+        printAttempt();
+        provideResources(26);
+        calendar.comingDay(daytosail);
+        negotitateWithEnvoys(envoys,"Signal is" + Math.random()*100);
+        wishGoodLuck(envoys);
+        envoys.sail(new Time(DayOfWeek.MONDAY,Month.DECEMBER,Moon.FULLMOON,Wheather.RAINY));
+        checkCalendar(calendar);
+    }
+
+
+
+
     @Override
     public boolean equals(Object ob){
-        if (getClass() != ob.getClass())
+        if (getClass() != ob.getClass()|| hashCode()!= ob.hashCode()) return false;
         if (this == ob) return true;
         Robinson o = (Robinson) ob;
         if (this.name==o.name && this.mood == o.mood && this.resources.equals(o.resources) && this.familar_signal == o.familar_signal && this.YarsInExile == o.YarsInExile && this.count_attempt == o.count_attempt){
@@ -81,5 +99,8 @@ public class Robinson implements GiftRes{
     public String toString(){
         return name;
     }
-    //hashcode
+    @Override
+    public int hashCode(){
+        return 31 + mood.hashCode() +familar_signal.hashCode()+ name.hashCode()+YarsInExile +count_attempt;
+    }
 }

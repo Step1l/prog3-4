@@ -29,4 +29,21 @@ public class Calendar extends Item{
             System.out.println("Наступил" + findByDate(date).eventDescription());
     }
 
+
+
+
+    @Override
+    public boolean equals(Object ob){
+         if (this==ob)return true;
+         if (getClass()!= ob.getClass()||hashCode() != ob.hashCode())return false;
+         Calendar o = (Calendar)ob;
+         if (events.equals(o.use()) && toString().equals(o.toString())) return true;
+         return false;
+    }
+
+
+    @Override
+    public int hashCode(){
+         return 31+events.hashCode() + toString().hashCode();
+    }
 }

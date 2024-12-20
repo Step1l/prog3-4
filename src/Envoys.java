@@ -27,7 +27,7 @@ public class Envoys {
 
     @Override
     public boolean equals(Object ob){
-        if (getClass() != ob.getClass()) return false;
+        if (getClass() != ob.getClass() || hashCode()!=ob.hashCode()) return false;
         if (this == ob) return true;
         Envoys o = (Envoys) ob;
         if (this.name == o.name && this.boat.equals(o.boat)) return true;
@@ -39,5 +39,8 @@ public class Envoys {
         return  name;
     }
 
-    //hashcode
+    @Override
+    public int hashCode(){
+        return 31 + name.hashCode() + boat.hashCode();
+    }
 }
