@@ -58,7 +58,7 @@ public class Main {
     public  static void main(String[] args){
 
         Calendar c = new Calendar("календарь");
-        c.addEvent(new CalendarEvent("01.01.1939","Раздел"));
+        c.addEvent(new CalendarEvent("01.01.1939","Размандоваска"));
         makeStory("Робинзон","Дауны","Корыто",88, Mood.SAD,c);
     }
 }

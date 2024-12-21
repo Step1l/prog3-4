@@ -26,7 +26,7 @@ public class Calendar extends Item{
     }
 
     public void comingDay(String date) throws  EmptyEventException{
-            System.out.println("Наступил" + findByDate(date).eventDescription());
+            System.out.println("Наступил " + findByDate(date).eventDescription());
     }
 
 

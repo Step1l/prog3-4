@@ -36,7 +36,7 @@ public class Robinson implements GiftRes{
         }
         String checkBread = resources.contains(new Resource("хлеб",Food.BREAD))? "хлеба":"";
         String checkRaisim = resources.contains(new Resource("изюм",Food.RAISIN))? "изюма":"";
-        System.out.println("Я снабдил их запасами " +checkBread + " и " + checkRaisim);
+        System.out.println("Я снабдил их запасами " +checkBread + " " + checkRaisim);
         return provided;
     }
 
@@ -78,7 +78,7 @@ public class Robinson implements GiftRes{
         this.mood = mood;
     }
     public void printAttempt(){
-        System.out.println("Это была моя "+ (this.count_attempt)+ " серьезная попытка за " + YarsInExile + "лет");
+        System.out.println("Это была моя "+ (this.count_attempt)+ " серьезная попытка за " + YarsInExile + " лет");
     }
     // public randomAttempt
 
@@ -124,7 +124,28 @@ public class Robinson implements GiftRes{
         checkCalendar(calendar);
     }
 
+    public void makeNoRandomAttempt(Calendar calendar, Envoys envoys, String daytosail,DayOfWeek day,Month month,Moon moon,Wheather wheather)throws NotEnoughException,EmptyEventException{
+        count_attempt++;
+        printMood();
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        printAttempt();
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        YarsInExile++;
+        provideResources((int)(Math.random()*100));
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        calendar.comingDay(daytosail);
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        negotitateWithEnvoys(envoys,"Signal is" + (int)(Math.random()*100));
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        wishGoodLuck(envoys);
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
 
+        envoys.sail(new Time(day,month,moon,wheather));
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        System.out.println("Я не был уверен правильно ли отмечены годы в моем календаре");
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+        checkCalendar(calendar);
+    }
 
 
     @Override
