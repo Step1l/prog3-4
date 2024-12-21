@@ -59,6 +59,6 @@ public class Main {
 
         Calendar c = new Calendar("календарь");
         c.addEvent(new CalendarEvent("01.01.1939","Размандоваска"));
-        makeStory("Робинзон","Дауны","Корыто",88, Mood.SAD,c);
+        makeStory("Робинзон","Дауны","Корыто",88, Mood.HOPEFULL,c);
     }
 }

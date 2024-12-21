@@ -131,7 +131,7 @@ public class Robinson implements GiftRes{
         printAttempt();
         try {Thread.sleep(1000);} catch (InterruptedException e) {}
         YarsInExile++;
-        provideResources((int)(Math.random()*100));
+        envoys.recieveSupplies(provideResources((int)(Math.random()*100)));
         try {Thread.sleep(1000);} catch (InterruptedException e) {}
         calendar.comingDay(daytosail);
         try {Thread.sleep(1000);} catch (InterruptedException e) {}

@@ -18,7 +18,7 @@ public class Envoys {
     }
 
     public void sail(Time time){
-        System.out.println("Они отчаляли на "+ boat.toString() + time.toString());
+        System.out.println("Они отчаляли на "+ boat.toString()+ " " + time.toString());
     }
 
     public Boat getBoat() {
