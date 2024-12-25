@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
 interface GiftRes{
-    public void prepareResources(Resource resource, int count);
-    public ArrayList<Resource> provideResources(int enough_count) throws NotEnoughException;
+     void prepareResources(Resource resource, int count);
+     ArrayList<Resource> provideResources(int enough_count) throws NotEnoughException;
 }

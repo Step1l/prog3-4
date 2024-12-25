@@ -29,14 +29,25 @@ public class Boat extends Item {
     @Override
     public boolean equals(Object ob){
         if (this == ob) return true;
-        if (getClass() != ob.getClass() || hashCode() != ob.hashCode()) return false;
+        if (ob==null) return false;
+        if (getClass() != ob.getClass()) return false;
         Boat o = (Boat) ob;
-        if (this.toString() == o.toString() && this.getCapacity().equals(o.getCapacity())) return true;
-        return false;
+        if (!super.equals(o)) return false;
+        return (this.toString().equals( o.toString()) && this.getCapacity().equals(o.getCapacity()));
+
     }
 
     @Override
     public int hashCode(){
         return 31 + capacity.hashCode() +signal.hashCode() + toString().hashCode();
+    }
+
+
+    public static void main(String[] args) {
+        var b1 = new Boat("name1");
+        b1.setSignal("1");
+        var b2 = new Boat("name1");
+        b2.setSignal("1");
+        System.out.println(b1.equals(b2));
     }
 }

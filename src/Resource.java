@@ -14,12 +14,11 @@ public class Resource {
     @Override
     public boolean equals(Object ob){
         if (this == ob) return true;
-        if (getClass() != ob.getClass()|| hashCode()!=ob.hashCode()) return false;
+        if (ob == null) return false;
+        if (getClass() != ob.getClass()) return false;
         Resource o = (Resource) ob;
-        if(this.type == o.type){
-            return true;
-        }
-        return false;
+        return (this.type == o.type && name.equals(o.name));
+
     }
     @Override
     public int hashCode(){

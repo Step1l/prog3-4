@@ -15,7 +15,7 @@ public class Main {
             boolean flag =true;
             try {
                 rob.makeRandomAttempt(cal,env,randDay +"." + randMonth +"." + randYear);
-            } catch (NotEnoughException e) {
+            } catch (NotEnoughException | RandomLuckException e) {
                 System.out.println(e.getMessage());
                 System.out.println("Неудачная попытка");
                 flag =false ;
@@ -23,10 +23,6 @@ public class Main {
                 System.out.println("Робинзон не обнаружил в своем календаре дня отплытия");
                 System.out.println("Неудачная попытка");
                 flag =false ;
-            }catch(RandomLuckException e){
-                System.out.println(e.getMessage());
-                System.out.println("Неудачная попытка");
-                flag =false;
             }
             if (flag) {
                 System.out.println("Успешно!");
@@ -58,7 +54,6 @@ public class Main {
     public  static void main(String[] args){
 
         Calendar c = new Calendar("календарь");
-        c.addEvent(new CalendarEvent("01.01.1939","Размандоваска"));
-        makeStory("Робинзон","Дауны","Корыто",88, Mood.HOPEFULL,c);
+        makeStory("Робинзон","Отчаливатели","Корыто",88, Mood.HOPEFULL,c);
     }
 }

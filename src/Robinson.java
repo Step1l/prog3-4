@@ -26,12 +26,12 @@ public class Robinson implements GiftRes{
         return resources.size();
     }
     @Override
-    public ArrayList<Resource> provideResources (int enough_count) throws NotEnoughException {
-        if (resources.size()< enough_count){
+    public ArrayList<Resource> provideResources (int enoughCcount) throws NotEnoughException {
+        if (resources.size()< enoughCcount){
                 throw new NotEnoughException("Ресурсов у меня не хватило");
         }
         ArrayList<Resource> provided = new ArrayList<Resource>();
-        for (int i=0; i< enough_count; i++){
+        for (int i=0; i< enoughCcount; i++){
             provided.add(resources.remove(0));
         }
         String checkBread = resources.contains(new Resource("хлеб",Food.BREAD))? "хлеба":"";
@@ -149,14 +149,12 @@ public class Robinson implements GiftRes{
 
 
     @Override
-    public boolean equals(Object ob){
-        if (getClass() != ob.getClass()|| hashCode()!= ob.hashCode()) return false;
+    public boolean equals(Object ob) {
         if (this == ob) return true;
+        if (ob == null) return false;
+        if (getClass() != ob.getClass()) return false;
         Robinson o = (Robinson) ob;
-        if (this.name==o.name && this.mood == o.mood && this.resources.equals(o.resources) && this.familar_signal == o.familar_signal && this.YarsInExile == o.YarsInExile && this.count_attempt == o.count_attempt){
-            return true;
-        }
-        return false;
+        return (this.name.equals(o.name) && this.mood == o.mood && this.resources.equals(o.resources) && this.familar_signal.equals(o.familar_signal) && this.YarsInExile == o.YarsInExile && this.count_attempt == o.count_attempt);
     }
     @Override
     public String toString(){

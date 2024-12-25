@@ -35,10 +35,12 @@ public class Calendar extends Item{
     @Override
     public boolean equals(Object ob){
          if (this==ob)return true;
+         if (ob == null) return false;
          if (getClass()!= ob.getClass()||hashCode() != ob.hashCode())return false;
          Calendar o = (Calendar)ob;
-         if (events.equals(o.use()) && toString().equals(o.toString())) return true;
-         return false;
+         if (!super.equals(o)) return false;
+         return (events.equals(o.use()) && toString().equals(o.toString()));
+
     }
 
 
