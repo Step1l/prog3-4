@@ -1,4 +1,11 @@
-record Time (DayOfWeek day, Month month, Moon moon, Wheather wheather){
+package records;
+
+import enums.DayOfWeek;
+import enums.Month;
+import enums.Moon;
+import enums.Wheather;
+
+public record Time (DayOfWeek day, Month month, Moon moon, Wheather wheather){
     @Override
     public String toString(){
         String[] base = new String[4];

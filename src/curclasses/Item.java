@@ -1,3 +1,5 @@
+package curclasses;
+
 public abstract class Item {
     private String name;
 

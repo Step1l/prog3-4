@@ -1,3 +1,5 @@
+package curclasses;
+import enums.Food;
 public class Resource {
     private Food type;
     private String name;

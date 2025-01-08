@@ -1,3 +1,5 @@
+package curclasses;
+
 import java.util.ArrayList;
 
 public class Boat extends Item {

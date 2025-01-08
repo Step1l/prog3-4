@@ -1,18 +1,28 @@
+package curclasses;
+
+import enums.*;
+import exceptions.EmptyEventException;
+import exceptions.NotEnoughException;
+import exceptions.RandomLuckException;
+import interfaces.GiftRes;
+import records.CalendarEvent;
+
+import records.Time;
 import java.util.ArrayList;
 
-public class Robinson implements GiftRes{
+public class Robinson implements GiftRes {
     private ArrayList<Resource> resources;
     private Mood mood;
-    private String familar_signal;
+    private String familarSignal;
     private String name;
     private int YarsInExile;
-    private int count_attempt;
+    private int countAttempt;
 
-    public Robinson(String name,Mood mood,int YearsInExile){
+    public Robinson(String name, Mood mood, int YearsInExile){
         this.name=name;
         this.mood = mood;
         this.YarsInExile = YearsInExile;
-        count_attempt=0;
+        countAttempt=0;
         resources = new ArrayList<Resource>();
 
     }
@@ -26,22 +36,22 @@ public class Robinson implements GiftRes{
         return resources.size();
     }
     @Override
-    public ArrayList<Resource> provideResources (int enough_count) throws NotEnoughException {
-        if (resources.size()< enough_count){
+    public ArrayList<Resource> provideResources (int enoughCount) throws NotEnoughException {
+        if (resources.size()< enoughCount){
                 throw new NotEnoughException("Ресурсов у меня не хватило");
         }
         ArrayList<Resource> provided = new ArrayList<Resource>();
-        for (int i=0; i< enough_count; i++){
+        for (int i=0; i< enoughCount; i++){
             provided.add(resources.remove(0));
         }
-        String checkBread = resources.contains(new Resource("хлеб",Food.BREAD))? "хлеба":"";
-        String checkRaisim = resources.contains(new Resource("изюм",Food.RAISIN))? "изюма":"";
+        String checkBread = resources.contains(new Resource("хлеб", Food.BREAD))? "хлеба":"";
+        String checkRaisim = resources.contains(new Resource("изюм", Food.RAISIN))? "изюма":"";
         System.out.println("Я снабдил их запасами " +checkBread + " и " + checkRaisim);
         return provided;
     }
 
     public void negotitateWithEnvoys(Envoys envoys, String signal){
-        this.familar_signal = signal;
+        this.familarSignal = signal;
         envoys.getBoat().setSignal(signal);
         System.out.println("Я условился с "+ envoys.toString() +" что на обратном пути они подадут сигнал, по которому я мог бы издали признать их " +envoys.getBoat().toString());
 
@@ -50,7 +60,7 @@ public class Robinson implements GiftRes{
         System.out.println("Я пожелал "+ envoys.toString() +" удачи");
     }
     public boolean recognizeBoat(Boat boat){
-        if (boat.use() == this.familar_signal){
+        if (boat.use() == this.familarSignal){
             return true;
         }
         return false;
@@ -78,14 +88,14 @@ public class Robinson implements GiftRes{
         this.mood = mood;
     }
     public void printAttempt(){
-        System.out.println("Это была моя "+ (this.count_attempt)+ " серьезная попытка за " + YarsInExile + "лет");
+        System.out.println("Это была моя "+ (this.countAttempt)+ " серьезная попытка за " + YarsInExile + "лет");
     }
     // public randomAttempt
 
 
 
-    public void makeRandomAttempt(Calendar calendar, Envoys envoys, String daytosail)throws NotEnoughException,EmptyEventException{
-        count_attempt++;
+    public void makeRandomAttempt(Calendar calendar, Envoys envoys, String daytosail)throws NotEnoughException, EmptyEventException {
+        countAttempt++;
 
         DayOfWeek day = DayOfWeek.values()[(int)(Math.random()*7)];
         Month month = Month.values()[(int)(Math.random()*12)];
@@ -98,7 +108,7 @@ public class Robinson implements GiftRes{
             case Mood.HOPEFULL -> 0.13;
             case Mood.SAD -> -0.2;
         };
-        double stormCoef = wheather==Wheather.STORMY ? -0.3 : 0;
+        double stormCoef = wheather== Wheather.STORMY ? -0.3 : 0;
         printMood();
         try {Thread.sleep(1000);} catch (InterruptedException e) {}
         printAttempt();
@@ -132,7 +142,7 @@ public class Robinson implements GiftRes{
         if (getClass() != ob.getClass()|| hashCode()!= ob.hashCode()) return false;
         if (this == ob) return true;
         Robinson o = (Robinson) ob;
-        if (this.name==o.name && this.mood == o.mood && this.resources.equals(o.resources) && this.familar_signal == o.familar_signal && this.YarsInExile == o.YarsInExile && this.count_attempt == o.count_attempt){
+        if (this.name==o.name && this.mood == o.mood && this.resources.equals(o.resources) && this.familarSignal == o.familarSignal && this.YarsInExile == o.YarsInExile && this.countAttempt == o.countAttempt){
             return true;
         }
         return false;
@@ -143,6 +153,6 @@ public class Robinson implements GiftRes{
     }
     @Override
     public int hashCode(){
-        return 31 + mood.hashCode() +familar_signal.hashCode()+ name.hashCode()+YarsInExile +count_attempt;
+        return 31 + mood.hashCode() +familarSignal.hashCode()+ name.hashCode()+YarsInExile +countAttempt;
     }
 }
