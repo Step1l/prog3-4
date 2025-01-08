@@ -21,7 +21,7 @@ public class Envoys {
     }
 
     public void sail(Time time){
-        System.out.println("Они отчаляли на "+ boat.toString() + time.toString());
+        System.out.println("Они отчаляли на "+ boat.toString()+ " " + time.toString());
     }
 
     public Boat getBoat() {
@@ -30,11 +30,12 @@ public class Envoys {
 
     @Override
     public boolean equals(Object ob){
-        if (getClass() != ob.getClass() || hashCode()!=ob.hashCode()) return false;
         if (this == ob) return true;
+        if (ob ==null) return false;
+        if (getClass() != ob.getClass()) return false;
         Envoys o = (Envoys) ob;
-        if (this.name == o.name && this.boat.equals(o.boat)) return true;
-        return false;
+        return (this.name.equals(o.name) && this.boat.equals(o.boat));
+
     }
 
     @Override
