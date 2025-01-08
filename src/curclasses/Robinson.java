@@ -88,7 +88,7 @@ public class Robinson implements GiftRes {
         this.mood = mood;
     }
     public void printAttempt(){
-        System.out.println("Это была моя "+ (this.countAttempt)+ " серьезная попытка за " + YarsInExile + "лет");
+        System.out.println("Это была моя "+ (this.countAttempt)+ " серьезная попытка за " + YarsInExile + " лет");
 
     }
     // public randomAttempt
@@ -111,50 +111,48 @@ public class Robinson implements GiftRes {
         };
         double stormCoef = wheather== Wheather.STORMY ? -0.3 : 0;
         printMood();
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         printAttempt();
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         YarsInExile++;
         provideResources((int)(Math.random()*100));
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         calendar.comingDay(daytosail);
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         negotitateWithEnvoys(envoys,"Signal is" + (int)(Math.random()*100));
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         wishGoodLuck(envoys);
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
 
         envoys.sail(new Time(day,month,moon,wheather));
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         if (((Math.random())+0.2 + moodCoef +stormCoef)<=0.5){
             throw new RandomLuckException("В следствии не предвиденных обстоятельств корабль отплывающих разбился");
         }
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         System.out.println("Я не был уверен правильно ли отмечены годы в моем календаре");
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         checkCalendar(calendar);
     }
 
     public void makeNoRandomAttempt(Calendar calendar, Envoys envoys, String daytosail,DayOfWeek day,Month month,Moon moon,Wheather wheather)throws NotEnoughException,EmptyEventException{
         countAttempt++;
         printMood();
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
         printAttempt();
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
         YarsInExile++;
         envoys.recieveSupplies(provideResources((int)(Math.random()*100)));
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         calendar.comingDay(daytosail);
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         negotitateWithEnvoys(envoys,"Signal is" + (int)(Math.random()*100));
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         wishGoodLuck(envoys);
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
 
         envoys.sail(new Time(day,month,moon,wheather));
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         System.out.println("Я не был уверен правильно ли отмечены годы в моем календаре");
-        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
         checkCalendar(calendar);
     }
 
