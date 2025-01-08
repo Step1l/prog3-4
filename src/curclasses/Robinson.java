@@ -44,9 +44,9 @@ public class Robinson implements GiftRes {
         for (int i=0; i< enoughCount; i++){
             provided.add(resources.remove(0));
         }
-        String checkBread = resources.contains(new Resource("хлеб", Food.BREAD))? "хлеба":"";
-        String checkRaisim = resources.contains(new Resource("изюм", Food.RAISIN))? "изюма":"";
-        System.out.println("Я снабдил их запасами " +checkBread + " и " + checkRaisim);
+        String checkBread = resources.contains(new Resource("ящик хлеба", Food.BREAD))? "хлеба":"";
+        String checkRaisim = resources.contains(new Resource("ящик изюма", Food.RAISIN))? "изюма":"";
+        System.out.println("Я снабдил их запасами " +checkBread+"," + checkRaisim);
         return provided;
     }
 
@@ -67,12 +67,12 @@ public class Robinson implements GiftRes {
     }
     public void printMood(){
         String par = switch (mood){
-            case Mood.HAPPY -> "C какой радостью";
+            case Mood.HAPPY -> "C какой радостью ";
             case Mood.NEUTRAL -> "";
-            case Mood.HOPEFULL -> " С какой надеждой";
-            case Mood.SAD -> "С какой печалью";
+            case Mood.HOPEFULL -> "С какой надеждой ";
+            case Mood.SAD -> "С какой печалью ";
         };
-        System.out.println(par + " я снарядил их в дорогу!");}
+        System.out.println(par + "я снарядил их в дорогу!");}
 
     public void checkCalendar(Calendar calendar){
         System.out.println("Я проверил календарь");
@@ -136,7 +136,7 @@ public class Robinson implements GiftRes {
     }
 
     public void makeNoRandomAttempt(Calendar calendar, Envoys envoys, String daytosail,DayOfWeek day,Month month,Moon moon,Wheather wheather)throws NotEnoughException,EmptyEventException{
-        count_attempt++;
+        countAttempt++;
         printMood();
         try {Thread.sleep(1000);} catch (InterruptedException e) {}
         printAttempt();

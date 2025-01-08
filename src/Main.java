@@ -24,7 +24,7 @@ public class Main {
             boolean flag =true;
             try {
                 rob.makeRandomAttempt(cal,env,String.join(".",""+randDay,""+randMonth, ""+randYear));
-            } catch (NotEnoughException e) {
+            } catch (NotEnoughException| RandomLuckException e) {
 
                 System.out.println(e.getMessage());
                 System.out.println("Неудачная попытка");

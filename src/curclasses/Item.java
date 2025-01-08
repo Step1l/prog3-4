@@ -1,5 +1,7 @@
 package curclasses;
 
+import java.util.Objects;
+
 public abstract class Item {
     private String name;
 
