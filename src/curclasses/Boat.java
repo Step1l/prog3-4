@@ -6,7 +6,7 @@ public class Boat extends Item {
     private ArrayList<Resource> capacity;
     private String signal;
 
-    public Boat(String name){
+    public Boat(String name) {
         super(name);
         capacity = new ArrayList<Resource>();
     }
@@ -18,8 +18,9 @@ public class Boat extends Item {
     public void setCapacity(ArrayList<Resource> capacity) {
         this.capacity = capacity;
     }
+
     @Override
-    public String use(){
+    public String use() {
         return signal;
     }
 
@@ -29,19 +30,19 @@ public class Boat extends Item {
     //hashcode
 
     @Override
-    public boolean equals(Object ob){
+    public boolean equals(Object ob) {
         if (this == ob) return true;
-        if (ob==null) return false;
+        if (ob == null) return false;
         if (getClass() != ob.getClass()) return false;
         Boat o = (Boat) ob;
         if (!super.equals(o)) return false;
-        return (this.toString().equals( o.toString()) && this.getCapacity().equals(o.getCapacity()));
+        return (this.toString().equals(o.toString()) && this.getCapacity().equals(o.getCapacity()));
 
     }
 
     @Override
-    public int hashCode(){
-        return 31 + capacity.hashCode() +signal.hashCode() + toString().hashCode();
+    public int hashCode() {
+        return 31 + capacity.hashCode() + signal.hashCode() + toString().hashCode();
     }
 
 

@@ -1,6 +1,6 @@
 package enums;
 
-public enum Mood{
+public enum Mood {
     HAPPY,
     HOPEFULL,
     NEUTRAL,

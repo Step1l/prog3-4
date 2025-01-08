@@ -1,6 +1,6 @@
 package enums;
 
-public enum Food{
+public enum Food {
     RAISIN,
     BREAD
 }

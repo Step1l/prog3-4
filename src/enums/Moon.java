@@ -1,6 +1,6 @@
 package enums;
 
-public enum Moon{
+public enum Moon {
     NEWMOON,
     FULLMOON,
     NON

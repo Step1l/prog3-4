@@ -5,11 +5,11 @@ import enums.Month;
 import enums.Moon;
 import enums.Wheather;
 
-public record Time (DayOfWeek day, Month month, Moon moon, Wheather wheather){
+public record Time(DayOfWeek day, Month month, Moon moon, Wheather wheather) {
     @Override
-    public String toString(){
+    public String toString() {
         String[] base = new String[4];
-        base[0] = switch (day){
+        base[0] = switch (day) {
             case DayOfWeek.MONDAY -> "в понедельник";
             case DayOfWeek.TUESDAY -> "во вторник";
             case DayOfWeek.WEDNESDAY -> "в среду";
@@ -20,7 +20,7 @@ public record Time (DayOfWeek day, Month month, Moon moon, Wheather wheather){
             case DayOfWeek.NON -> "";
 
         };
-        base[1] = switch (month){
+        base[1] = switch (month) {
             case Month.JANUARY -> "в январе";
             case Month.FEBRUARY -> "в феварле";
             case Month.MARCH -> "в марте";
@@ -36,13 +36,13 @@ public record Time (DayOfWeek day, Month month, Moon moon, Wheather wheather){
             case Month.NON -> "";
         };
 
-        base[2] = switch (moon){
+        base[2] = switch (moon) {
             case Moon.FULLMOON -> "в полнолуние";
             case Moon.NEWMOON -> "в новолуние";
             case Moon.NON -> "";
         };
-        base[3] = switch (wheather){
-            case Wheather.FOGGY  -> "в туманную погоду";
+        base[3] = switch (wheather) {
+            case Wheather.FOGGY -> "в туманную погоду";
             case Wheather.RAINY -> "в дождь";
             case Wheather.SNOWY -> "в снег";
             case Wheather.STORMY -> "в шторм";
@@ -51,6 +51,6 @@ public record Time (DayOfWeek day, Month month, Moon moon, Wheather wheather){
             case Wheather.NON -> "";
         };
 
-        return base[0] +' ' +base[1] +' ' +base[2]+' '+base[3];
+        return base[0] + ' ' + base[1] + ' ' + base[2] + ' ' + base[3];
     }
 }
